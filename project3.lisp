@@ -17,15 +17,62 @@
 
 ; list functions 
 
-; for some reason copy and paste does not work
+
+
+(defun list. (x y)
+  (cons x (cons y '())))
+
 (defun append (x y)
 	(if (null x)
 		y
 		(cons (first x)
 			(append (rest x) y))))
 
+(defun reverse (x)
+	(if (eq x())
+		()
+		(append (reverse (cdr x)) (list(car x))))
+	)
 
+(defun addtoend (x y)
+	(if(null y)
+		'()
 
+	(reverse (cons x (reverse y)))))
+
+(defun remove-all (x y)
+	(if (null y)
+		'()
+		(if (eq x (car y))
+			(remove-all x (cdr y))
+			(cons (car y) (remove-all x (cdr y))))))
+		
+; set
+; (defun member (x y)
+; 	(cond ((null y) x)
+; 		((eq x (car y)) t)
+; 		(t (member x (cdr y))))
+
+; (defun member (x y)
+; 	(cond ((null y) nil)
+; 		((equal x (car y)) y)
+; 		(t (member x (cdr y)))))
+
+(defun member (x y)
+	(if (null y) nil
+		(if (equalp x (car y)) t
+	    (member x (cdr y)))))
+
+(defun union (x y)
+	(cond ((null x) y)
+		((member (first x) y) (union(rest x) y))
+		(t (cons(first x)(union(rest x) y)))))
+		
+	
+(defun intersection (x y)
+	(cond ((null x) nil)
+		( (member (first x) y)(cons(first x) (intersection (rest x) y)))
+		(t (intersection(rest x) y))))
 ; math functions
 
 (defun abs (x)
@@ -53,7 +100,8 @@
 	; lcm(x y) = (* x y) / (gcd(x y))))
 	; (* x y (/ gcd(x y)))
 	(/(abs(* x y)) (gcd x y)))
-	
+
+
 	
 
 ; helper function for absolute value function
