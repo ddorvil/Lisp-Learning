@@ -73,6 +73,12 @@
 	(cond ((null x) nil)
 		( (member (first x) y)(cons(first x) (intersection (rest x) y)))
 		(t (intersection(rest x) y))))
+
+(defun cardinality (x)
+	(if (null x)
+		0
+		(1+ (cardinality (rest x) ))))
+
 ; math functions
 
 (defun abs (x)
@@ -131,4 +137,31 @@
 (defun negate (X)
   "Negate the value of X."  ; This is a documentation string.
   (- X))
+
+;required functions 
+(defun is-divisible(x y)
+    (= (mod x y) 0))
+
+(defun getDivisors(x y divisor)
+    (if (equalp x divisor)
+        y (if (is-divisible x divisor)
+            (getDivisors x (+ y divisor) (+ divisor 1))
+            (getDivisors x y (+ divisor 1))
+        )
+    ))
+
+(defun sum(x)
+    (getDivisors x 0 1))
+
+(defun perfectp(x)
+    (equalp (sum x) x))
+
+(defun abundantp (x)
+	(>= (sum x) x)
+
+	)
+
+(defun deficientp (x)
+	(<= (sum x) x))
+
 
