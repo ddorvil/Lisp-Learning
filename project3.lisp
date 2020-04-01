@@ -101,7 +101,30 @@
 	; (* x y (/ gcd(x y)))
 	(/(abs(* x y)) (gcd x y)))
 
+; fibonacci numbers 
+(defun nth-fibo(n) 
+	(cond((eq n 0) 0) 
+		((or (eq n 1) (eq n 2)) 1) 
+		((+ (nth-fibo (- n 1)) 
+		    (nth-fibo (- n 2))))))
 
+; prime numbers 
+(defun primep (n &optional (d (- n 1))) 
+	(if (/= n 1) 
+	    (or (= d 1) 
+		(and (/= (rem n d) 0) 
+		     (primep n (- d 1)))) ()))
+
+; set difference 
+(defun difference (x y)
+	(cond
+		((null x) x)
+		    ((member (car x) y) (difference (cdr x) y))
+    	(t (cons (car x) (difference (cdr x) y)))))
+
+; symmetrical difference 
+(defun symdiff (x y) 
+	(union (difference x y) (difference y x)))
 	
 
 ; helper function for absolute value function
