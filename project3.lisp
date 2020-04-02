@@ -1,24 +1,6 @@
 (setq ext:*warn-on-redefinition* nil)+
-; (print "What's your name")
-
-; (defvar *name* (read))
-
-; (defun hello-you (*name*)
-; 	(format t "Hello ~a! ~%" *name*))
-
-; (hello-you *name*)
-
-; (print "Enter a number: ")
-; (defvar num (read))
-; (defun abs (num)
-; 	(if (= num)
-; 		(format t "~d" *num*)
-; 		(format t (* num -1 ~a))))
 
 ; list functions 
-
-(defun list. (x y)
-  (cons x (cons y '())))
 
 ; append two lists
 (defun append (x y)
